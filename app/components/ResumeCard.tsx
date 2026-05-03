@@ -5,14 +5,14 @@ import ScoreCircle from "~/components/ScoreCircle";
     return (
         <Link
             to={`/resume/${id}`}
-            className="resume-card p-4 bg-white rounded-xl shadow-md h-full w-full max-w-[550px]">
+            className="resume-card p-4 bg-white rounded-xl shadow-md h-full w-full max-w-137.5">
 
             <div className= "resume-card-header">
             <div className= "flex flex-col gap-2">
-                <h2 className=" !text-black font-bold wrap-break-word ">{companyName}</h2>
+                <h2 className=" text-black! font-bold wrap-break-word ">{companyName}</h2>
                 <h3 className="text-lg wrap-break-word text-gray-500" >{jobTitle}</h3>
             </div>
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
                 <ScoreCircle score={feedback.overallScore} />
             </div>
             </div>
