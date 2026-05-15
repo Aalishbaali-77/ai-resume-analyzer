@@ -350,7 +350,9 @@ export const usePuterStore = create<PuterStore>((set, get) => {
                     ],
                 },
             ],
-            { model: "claude-sonnet-4" }
+            undefined,           // ← imageURL = undefined
+            false,               // ← testMode = false
+            { model: "claude-sonnet-4" }  // ← options in correct 4th position
         ) as Promise<AIResponse | undefined>;
     };
 
