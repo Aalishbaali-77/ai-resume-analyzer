@@ -43,7 +43,6 @@ const Upload = () => {
             feedback: '',
         }
         await kv.set(`resume:${uuid}`, JSON.stringify(data));
-
         setStatusText('Analyzing...');
 
         const feedback = await ai.feedback(
@@ -61,7 +60,6 @@ const Upload = () => {
         setStatusText('Analysis complete, redirecting...');
 
         console.log(data);
-
         setTimeout(() => {
             navigate(`/resume/${uuid}`);
         }, 1200);
