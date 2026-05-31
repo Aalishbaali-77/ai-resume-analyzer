@@ -6,6 +6,7 @@ import {
     Scripts,
     ScrollRestoration,
 } from "react-router";
+import Sidebar from "~/components/Sidebar";
 import type { Route } from "./+types/root";
 import "./app.css";
 import { useSupabaseStore } from "~/lib/store";
@@ -25,7 +26,7 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
-    const { init } = useSupabaseStore();
+    const { init, auth } = useSupabaseStore();
 
     useEffect(() => {
         init();
@@ -40,8 +41,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Links />
         </head>
         <body>
-        <script src="https://js.puter.com/v2/"></script>
-        {children}
+        <div className="flex min-h-screen">
+            {auth.isAuthenticated && <Sidebar />}
+            <div className={`flex-1 transition-all duration-300 ${auth.isAuthenticated ? "lg:ml-64" : ""}`}>
+                {children}
+            </div>
+        </div>
         <ScrollRestoration />
         <Scripts />
         </body>

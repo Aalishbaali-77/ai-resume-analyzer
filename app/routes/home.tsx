@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import type { Route } from "./+types/home";
-import Navbar from "~/components/Navbar";
 import ResumeCard from "~/components/ResumeCard";
 import { useSupabaseStore } from "~/lib/store";
 import { useNavigate, Link } from "react-router";
@@ -52,9 +51,9 @@ export default function Home() {
 
     return (
         <main className="bg-[url('/images/bg-main.svg')] bg-cover bg-center min-h-screen">
-            <Navbar />
-            <section className="main-section text-center py-20 px-6">
-                <div className="max-w-3xl mx-auto">
+            {/* Hero */}
+            <section className="px-6 pt-16 pb-8 text-center">
+                <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700">
                     <h1 className="text-4xl md:text-5xl font-bold">
                         Track Your Applications & Resume Ratings
                     </h1>
@@ -65,25 +64,35 @@ export default function Home() {
             </section>
 
             {loadingResumes ? (
-                <div className="flex justify-center py-12">
-                    <p className="text-gray-500 animate-pulse">Loading your resumes...</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-6">
+                    {[1,2,3].map((i) => (
+                        <div key={i} className="h-[400px] bg-white/60 rounded-2xl animate-pulse" />
+                    ))}
                 </div>
             ) : resumes.length === 0 ? (
-                <div className="flex flex-col items-center py-12 gap-4">
-                    <p className="text-gray-500 text-lg">No resumes yet.</p>
-                    <Link to="/upload" className="primary-button w-fit">
+                <div className="flex flex-col items-center py-20 gap-6 animate-in fade-in duration-500">
+                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-purple-100 to-blue-100 flex items-center justify-center">
+                        <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#6366f1">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                    <p className="text-gray-500 text-lg">No resumes yet</p>
+                    <Link to="/upload" className="primary-button w-fit px-8">
                         Upload your first resume
                     </Link>
                 </div>
             ) : (
-                <div className="resume-cards-section">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                        {resumes.map((resume) => (
-                            <ResumeCard key={resume.id} resume={resume} />
-                        ))}
-                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-6 pb-10">
+                    {resumes.map((resume, i) => (
+                        <div
+                            key={resume.id}
+                            className="animate-in fade-in slide-in-from-bottom-4"
+                            style={{ animationDelay: `${i * 100}ms` }}
+                        >
+                            <ResumeCard resume={resume} />
+                        </div>
+                    ))}
                 </div>
             )}
         </main>
-    );
-}
+    );}

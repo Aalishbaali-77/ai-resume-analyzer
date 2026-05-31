@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import Navbar from "~/components/Navbar";
 import ScoreCircle from "~/components/ScoreCircle";
 import { useSupabaseStore } from "~/lib/store";
 
@@ -15,7 +14,7 @@ const TipCard = ({
                  }: {
     tip: { type: "good" | "improve"; tip: string; explanation?: string };
 }) => (
-    <div className={`flex gap-3 p-4 rounded-xl ${tip.type === "good" ? "bg-badge-green" : "bg-badge-red"}`}>
+    <div className={`flex gap-3 p-4 rounded-xl transition-all duration-200 hover:scale-[1.01] ${tip.type === "good" ? "bg-badge-green" : "bg-badge-red"}`}>
         <img
             src={tip.type === "good" ? "/icons/check.svg" : "/icons/warning.svg"}
             alt={tip.type}
@@ -45,8 +44,8 @@ const CategorySection = ({
 }) => {
     const badge = scoreBadge(score);
     return (
-        <div className="flex flex-col gap-4">
-            <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
+            <div className="flex items-center justify-between flex-wrap gap-2">
                 <div className="flex items-center gap-2">
                     <img src={icon} alt={title} className="w-10 h-10" />
                     <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
@@ -104,9 +103,11 @@ export default function ResumePage() {
     if (loading) {
         return (
             <main className="min-h-screen bg-[url('/images/bg-main.svg')] bg-cover">
-                <Navbar />
-                <div className="flex justify-center items-center h-64">
-                    <p className="text-gray-500 animate-pulse text-lg">Loading...</p>
+                <div className="flex justify-center items-center h-screen">
+                    <div className="flex flex-col items-center gap-4">
+                        <div className="w-16 h-16 rounded-full primary-gradient animate-pulse" />
+                        <p className="text-gray-500 animate-pulse text-lg">Loading resume...</p>
+                    </div>
                 </div>
             </main>
         );
@@ -115,7 +116,6 @@ export default function ResumePage() {
     if (error || !resume) {
         return (
             <main className="min-h-screen bg-[url('/images/bg-main.svg')] bg-cover">
-                <Navbar />
                 <div className="flex flex-col items-center gap-4 pt-24">
                     <p className="text-red-500 text-lg">{error ?? "Resume not found"}</p>
                     <Link to="/" className="back-button">
@@ -131,25 +131,32 @@ export default function ResumePage() {
 
     return (
         <main className="min-h-screen bg-[url('/images/bg-main.svg')] bg-cover">
-            <Navbar />
-            <div className="resume-nav max-w-6xl mx-auto mt-4 px-4">
-                <Link to="/" className="back-button">
+            {/* Top nav row */}
+            <div className="flex items-center justify-between px-6 py-4 max-w-6xl mx-auto">
+                <Link to="/" className="back-button animate-in fade-in duration-300">
                     <img src="/icons/back.svg" alt="back" />
                     <span className="text-sm">Back</span>
                 </Link>
-                <div className="flex flex-col items-end">
+                <div className="flex flex-col items-end animate-in fade-in duration-300">
                     <h2 className="font-bold text-gray-900">{resume.companyName}</h2>
                     <p className="text-gray-500 text-sm">{resume.jobTitle}</p>
                 </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto px-4 py-8">
-                <aside className="w-full lg:w-[380px] shrink-0 flex flex-col gap-6">
-                    <div className="gradient-border flex flex-col items-center gap-4 py-6">
+            {/* Main content */}
+            <div className="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto px-4 py-4 pb-12">
+
+                {/* Left sidebar */}
+                <aside className="w-full lg:w-[340px] shrink-0 flex flex-col gap-4">
+
+                    {/* Overall score card */}
+                    <div className="gradient-border flex flex-col items-center gap-3 py-6 animate-in fade-in slide-in-from-left-4 duration-500">
                         <ScoreCircle score={feedback.overallScore} />
                         <p className="text-gray-600 font-medium text-sm">Overall Score</p>
                     </div>
-                    <div className="resume-summary flex flex-col gap-2">
+
+                    {/* Category scores */}
+                    <div className="flex flex-col gap-2 animate-in fade-in slide-in-from-left-4 duration-500 delay-100">
                         {(
                             [
                                 ["ATS", feedback.ATS.score, "/icons/ats-good.svg"],
@@ -161,7 +168,7 @@ export default function ResumePage() {
                         ).map(([label, score, icon]) => {
                             const badge = scoreBadge(score);
                             return (
-                                <div key={label} className="category">
+                                <div key={label} className="flex flex-row gap-2 items-center bg-white rounded-2xl p-3 w-full justify-between shadow-sm hover:shadow-md transition-all duration-200">
                                     <div className="flex items-center gap-2">
                                         <img src={icon} alt={label} className="w-8 h-8" />
                                         <span className="text-sm font-medium text-gray-700">{label}</span>
@@ -173,7 +180,9 @@ export default function ResumePage() {
                             );
                         })}
                     </div>
-                    <div className="gradient-border">
+
+                    {/* Resume image */}
+                    <div className="gradient-border animate-in fade-in slide-in-from-left-4 duration-500 delay-200">
                         <img
                             src={resume.imagePath}
                             alt="Resume preview"
@@ -182,8 +191,11 @@ export default function ResumePage() {
                     </div>
                 </aside>
 
-                <section className="feedback-section flex flex-col gap-10 flex-1">
-                    <h2 className="text-2xl font-bold text-gray-900">Detailed Feedback</h2>
+                {/* Right feedback */}
+                <section className="flex flex-col gap-8 flex-1 pb-8">
+                    <h2 className="text-2xl font-bold text-gray-900 animate-in fade-in duration-500">
+                        Detailed Feedback
+                    </h2>
                     <CategorySection title="ATS Compatibility" icon="/icons/ats-good.svg" score={feedback.ATS.score} tips={feedback.ATS.tips} />
                     <CategorySection title="Tone & Style" icon="/icons/ats-warning.svg" score={feedback.toneAndStyle.score} tips={feedback.toneAndStyle.tips} />
                     <CategorySection title="Content" icon="/icons/ats-good.svg" score={feedback.content.score} tips={feedback.content.tips} />
