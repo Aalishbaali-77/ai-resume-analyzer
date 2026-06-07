@@ -25,11 +25,6 @@ html, body {
   @apply bg-white transition-colors duration-300;
 }
 
-.dark html, .dark body, html.dark, html.dark body {
-  background-color: #0f1117;
-  color: #e2e8f0;
-}
-
 main {
   min-height: 100vh;
   padding-top: 1.5rem;
@@ -184,21 +179,87 @@ form {
   animation: slideUp 0.4s ease forwards;
 }
 
+/* ===== DARK MODE ===== */
 .dark {
   color-scheme: dark;
-  background-color: #0f1117;
+  background-color: #0f1117 !important;
   color: #e2e8f0;
+}
+
+.dark body {
+  background-color: #0f1117 !important;
+}
+
+.dark aside {
+  background: #1a1d27 !important;
+  border-color: #2a2d3a !important;
 }
 
 .dark .navbar {
-  background-color: #1a1d27;
+  background-color: #1a1d27 !important;
 }
 
 .dark .resume-card {
-  background-color: #1a1d27;
+  background-color: #1a1d27 !important;
+  color: #e2e8f0 !important;
+}
+
+.dark .resume-summary .category {
+  background-color: #1a1d27 !important;
+  color: #e2e8f0 !important;
 }
 
 .dark input, .dark textarea {
-  background-color: #1a1d27;
+  background-color: #1a1d27 !important;
+  color: #e2e8f0 !important;
+}
+
+.dark .back-button {
+  background-color: #1a1d27 !important;
+  color: #e2e8f0 !important;
+  border-color: #2a2d3a !important;
+}
+
+.dark h2 {
+  color: #e2e8f0 !important;
+}
+
+.dark p, .dark span, .dark label {
   color: #e2e8f0;
+}
+
+.dark .bg-white {
+  background-color: #1a1d27 !important;
+}
+
+.dark .bg-gray-50 {
+  background-color: #1a1d27 !important;
+}
+
+.dark .bg-gray-100 {
+  background-color: #2a2d3a !important;
+}
+
+.dark .border-gray-100, .dark .border-gray-200 {
+  border-color: #2a2d3a !important;
+}
+
+.dark .text-gray-400 {
+  color: #94a3b8 !important;
+}
+
+.dark .text-gray-600, .dark .text-gray-700 {
+  color: #cbd5e1 !important;
+}
+
+.dark .uploader-drag-area {
+  background-color: #1a1d27 !important;
+}
+
+.dark .uploader-selected-file {
+  background-color: #2a2d3a !important;
+}
+
+.dark main {
+  background-color: #0f1117 !important;
 }
