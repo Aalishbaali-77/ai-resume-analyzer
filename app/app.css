@@ -180,14 +180,13 @@ form {
 }
 
 /* ===== DARK MODE ===== */
-.dark {
-  color-scheme: dark;
+.dark,
+.dark body,
+.dark main,
+.dark .flex-1,
+.dark .flex.min-h-screen {
   background-color: #0f1117 !important;
   color: #e2e8f0;
-}
-
-.dark body {
-  background-color: #0f1117 !important;
 }
 
 .dark aside {
@@ -195,78 +194,32 @@ form {
   border-color: #2a2d3a !important;
 }
 
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: #e2e8f0 !important;
+}
+
+.dark p, .dark span, .dark li, .dark label, .dark div {
+  color: #e2e8f0;
+}
+
 .dark .navbar {
   background-color: #1a1d27 !important;
 }
 
-.dark .resume-card {
+.dark .resume-card,
+.dark .resume-summary .category,
+.dark .back-button,
+.dark .uploader-drag-area,
+.dark .gradient-border {
   background-color: #1a1d27 !important;
-  color: #e2e8f0 !important;
-}
-
-.dark .resume-summary .category {
-  background-color: #1a1d27 !important;
+  border-color: #2a2d3a !important;
   color: #e2e8f0 !important;
 }
 
 .dark input, .dark textarea {
   background-color: #1a1d27 !important;
   color: #e2e8f0 !important;
-}
-
-.dark .back-button {
-  background-color: #1a1d27 !important;
-  color: #e2e8f0 !important;
   border-color: #2a2d3a !important;
-}
-
-.dark h2 {
-  color: #e2e8f0 !important;
-}
-
-.dark p:not([class*="text-"]),
-.dark label:not([class*="text-"]) {
-  color: #e2e8f0;
-}
-
-
-.dark .bg-white {
-  background-color: #1a1d27 !important;
-}
-
-.dark .bg-gray-50 {
-  background-color: #1a1d27 !important;
-}
-
-.dark .bg-gray-100 {
-  background-color: #2a2d3a !important;
-}
-
-.dark .border-gray-100, .dark .border-gray-200 {
-  border-color: #2a2d3a !important;
-}
-
-.dark .text-gray-400 {
-  color: #94a3b8 !important;
-}
-
-.dark .text-gray-600, .dark .text-gray-700 {
-  color: #cbd5e1 !important;
-}
-
-.dark .uploader-drag-area {
-  background-color: #1a1d27 !important;
-}
-
-.dark .uploader-selected-file {
-  background-color: #2a2d3a !important;
-}
-
-.dark main {
-  background-color: #0f1117 !important;
-}
-.dark .score-badge {
-  opacity: 0.9;
 }
 
 .dark .resume-nav {
@@ -274,10 +227,74 @@ form {
   border-color: #2a2d3a !important;
 }
 
-.dark .feedback-section {
-  color: #e2e8f0;
+.dark .uploader-selected-file,
+.dark .bg-gray-50,
+.dark .bg-white {
+  background-color: #1a1d27 !important;
 }
 
-.dark .gradient-border {
-  background: linear-gradient(to bottom, #1e2235, #252a3d) !important;
+.dark .bg-gray-100 {
+  background-color: #2a2d3a !important;
+}
+
+.dark .border-gray-100,
+.dark .border-gray-200 {
+  border-color: #2a2d3a !important;
+}
+
+.dark .text-gray-400 { color: #94a3b8 !important; }
+.dark .text-gray-500 { color: #94a3b8 !important; }
+.dark .text-gray-600 { color: #cbd5e1 !important; }
+.dark .text-gray-700 { color: #cbd5e1 !important; }
+.dark .text-gray-900 { color: #f1f5f9 !important; }
+
+.dark .score-badge { opacity: 0.95; }
+
+/* Fix feedback card backgrounds */
+.dark [class*="bg-badge-"],
+.dark [class*="bg-red-"],
+.dark [class*="bg-orange-"],
+.dark [class*="bg-green-"],
+.dark [class*="bg-yellow-"] {
+  background-color: #2a2d3a !important;
+}
+
+/* Fix score badge text */
+.dark .score-badge,
+.dark .score-badge span {
+  color: #e2e8f0 !important;
+  background-color: #2a2d3a !important;
+}
+
+/* Fix right side background */
+.dark .feedback-section *,
+.dark [class*="feedback"] * {
+  color: #e2e8f0 !important;
+}
+
+/* Fix pinkish page background */
+.dark .bg-gradient,
+.dark [style*="background"] {
+  background: #0f1117 !important;
+}
+
+/* Fix outer page background */
+.dark html,
+.dark body,
+.dark #root,
+.dark .flex.min-h-screen,
+.dark .flex-1 {
+  background-color: #0f1117 !important;
+  background-image: none !important;
+}
+
+/* Remove any gradient backgrounds */
+.dark * {
+  background-image: none !important;
+}
+
+/* Re-enable gradients only for buttons */
+.dark .primary-button,
+.dark [class*="primary-gradient"] {
+  background-image: linear-gradient(to bottom, #8e98ff, #606beb) !important;
 }
