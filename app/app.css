@@ -228,7 +228,7 @@ form {
 .dark label:not([class*="text-"]) {
   color: #e2e8f0;
 }
-}
+
 
 .dark .bg-white {
   background-color: #1a1d27 !important;
