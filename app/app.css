@@ -224,8 +224,10 @@ form {
   color: #e2e8f0 !important;
 }
 
-.dark p, .dark span, .dark label {
+.dark p:not([class*="text-"]),
+.dark label:not([class*="text-"]) {
   color: #e2e8f0;
+}
 }
 
 .dark .bg-white {
@@ -262,4 +264,20 @@ form {
 
 .dark main {
   background-color: #0f1117 !important;
+}
+.dark .score-badge {
+  opacity: 0.9;
+}
+
+.dark .resume-nav {
+  background-color: #1a1d27 !important;
+  border-color: #2a2d3a !important;
+}
+
+.dark .feedback-section {
+  color: #e2e8f0;
+}
+
+.dark .gradient-border {
+  background: linear-gradient(to bottom, #1e2235, #252a3d) !important;
 }
