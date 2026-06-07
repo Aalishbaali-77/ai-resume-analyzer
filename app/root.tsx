@@ -11,6 +11,7 @@ import type { Route } from "./+types/root";
 import "./app.css";
 import { useSupabaseStore } from "~/lib/store";
 import { useEffect } from "react";
+import { useThemeStore } from "~/lib/theme";
 
 export const links: Route.LinksFunction = () => [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -27,13 +28,14 @@ export const links: Route.LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
     const { init, auth } = useSupabaseStore();
+    const { isDark } = useThemeStore();
 
     useEffect(() => {
         init();
     }, [init]);
 
     return (
-        <html lang="en">
+        <html lang="en" className={isDark ? "dark" : ""}>
         <head>
             <meta charSet="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -53,7 +55,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </html>
     );
 }
-
 export default function App() {
     return <Outlet />;
 }
@@ -80,8 +81,8 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
             <p>{details}</p>
             {stack && (
                 <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
+                    <code>{stack}</code>
+                </pre>
             )}
         </main>
     );

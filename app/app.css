@@ -14,10 +14,20 @@
   --color-badge-green-text: #254d4a;
   --color-badge-red-text: #752522;
   --color-badge-yellow-text: #73321b;
+  --color-dark-bg: #0f1117;
+  --color-dark-surface: #1a1d27;
+  --color-dark-border: #2a2d3a;
+  --color-dark-text: #e2e8f0;
+  --color-dark-muted: #64748b;
 }
 
 html, body {
-  @apply bg-white;
+  @apply bg-white transition-colors duration-300;
+}
+
+.dark html, .dark body, html.dark, html.dark body {
+  background-color: #0f1117;
+  color: #e2e8f0;
 }
 
 main {
@@ -121,7 +131,7 @@ form {
     @apply flex flex-col gap-2 w-full items-start;
   }
 
-  .uplader-drag-area {
+  .uploader-drag-area {
     @apply relative p-8 text-center transition-all duration-700 cursor-pointer bg-white rounded-2xl min-h-[208px];
   }
 
@@ -172,4 +182,23 @@ form {
 
 .page-enter {
   animation: slideUp 0.4s ease forwards;
+}
+
+.dark {
+  color-scheme: dark;
+  background-color: #0f1117;
+  color: #e2e8f0;
+}
+
+.dark .navbar {
+  background-color: #1a1d27;
+}
+
+.dark .resume-card {
+  background-color: #1a1d27;
+}
+
+.dark input, .dark textarea {
+  background-color: #1a1d27;
+  color: #e2e8f0;
 }
